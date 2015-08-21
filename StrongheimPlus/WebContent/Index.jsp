@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>University of North Carolina at Chapel Hill</title>
 </head>
 <body>
 <!-- Jumbotron -->
@@ -15,7 +15,7 @@
     <div class="container">
         <h1>Welcome Professor Robert!</h1>
         <p>Enter student records below.*</p>
-        <p><a href="#" class="btn btn-success btn-lg">University of North Carolina at Chapel Hill »</a></p>
+        <p><a href="http://www.unc.edu/" class="btn btn-success btn-lg">University of North Carolina at Chapel Hill »</a></p>
     </div>
 </div>
 

@@ -28,9 +28,29 @@ public class ResultServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		response.setContentType("text/html");
-		String extraa = "";
-
-		
+		double gpa = 0.0;
+		if(request.getParameter("gpa") != null && !request.getParameter("gpa").isEmpty()){			
+			int homeWorkWeight = Integer.parseInt(request.getParameter("homeWorkWeight"));
+			int quizWeight = Integer.parseInt(request.getParameter("quizWeight"));
+			int testWeight = Integer.parseInt(request.getParameter("testWeight"));
+			int projectWeight = Integer.parseInt(request.getParameter("projectWeight"));
+			int studentID = Integer.parseInt(request.getParameter("studentID"));
+			int courseID = Integer.parseInt(request.getParameter("courseID"));
+			try {
+				DBOperation.updateCourseByCourseID(courseID, homeWorkWeight, quizWeight, testWeight, projectWeight, conn);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}				
+			try {
+				gpa = DBOperation.getGPAByStudentIDByCourseID(courseID, studentID, homeWorkWeight, quizWeight, testWeight, projectWeight, conn);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			System.out.println(gpa);
+			//response.setContentType("text/html");			
+		}
 		
 		ttt = request.getParameter("ttt");
 		if(ttt.equals("0")){
@@ -115,34 +135,8 @@ public class ResultServlet extends HttpServlet {
 				//getServletContext().getRequestDispatcher("/viewResult.jsp").forward(request, response);	
 		}
 		 
-		
-		if(request.getParameter("gpa") != null && !request.getParameter("gpa").isEmpty()){
-			
-			int homeWorkWeight = Integer.parseInt(request.getParameter("homeWorkWeight"));
-			int quizWeight = Integer.parseInt(request.getParameter("quizWeight"));
-			int testWeight = Integer.parseInt(request.getParameter("testWeight"));
-			int projectWeight = Integer.parseInt(request.getParameter("projectWeight"));
-			int studentID = Integer.parseInt(request.getParameter("studentID"));
-			int courseID = Integer.parseInt(request.getParameter("courseID"));
-			try {
-				DBOperation.updateCourseByCourseID(courseID, homeWorkWeight, quizWeight, testWeight, projectWeight, conn);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			double gpa = 0.0;
-			try {
-				gpa = DBOperation.getGPAByStudentIDByCourseID(courseID, studentID, homeWorkWeight, quizWeight, testWeight, projectWeight, conn);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			System.out.println(gpa);
-			//response.setContentType("text/html");
-			
+		if(gpa > 0){
 			table += "<h1>GPA is: " + gpa + "</h1>";
-			
 		}
 		request.setAttribute("table", table); 
 		//request.setAttribute("extra", "<h1>extra</h1>"); 

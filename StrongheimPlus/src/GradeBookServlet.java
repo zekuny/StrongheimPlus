@@ -24,7 +24,8 @@ public class GradeBookServlet extends HttpServlet {
 		String assignmentName = request.getParameter("assignmentName");
 		int typeID = Integer.parseInt(request.getParameter("typeID"));
 		String tmp = request.getParameter("date");
-		SimpleDateFormat format = new SimpleDateFormat("dd/MMM/yyyy");
+		System.out.println(tmp);
+		SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
 		Date date = new Date();
 		try {
 			date = format.parse(tmp);

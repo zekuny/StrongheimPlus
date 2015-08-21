@@ -39,22 +39,33 @@ public class DBOperation {
 		ResultSet result = preStatement.executeQuery();
 		double gpa = 0.0;
 		int count = 0;
+		double t1 = 0.0;
+		double c1 = 0;
+		double t2 = 0.0;
+		double c2 = 0;
+		double t3 = 0.0;
+		double c3 = 0;
+		double t4 = 0.0;
+		double c4 = 0;
 		while(result.next()){
 			String type = result.getString("typeID");
 			double tmp = Double.parseDouble(result.getString("grade"));
 			if(type.equals("1")){
-				tmp = tmp * h / 100;
+				t1 += tmp;
+				c1++;
 			}else if(type.equals("2")){
-				tmp = tmp * q / 100;
+				t2 += tmp;
+				c2++;
 			}else if(type.equals("3")){
-				tmp = tmp * t / 100;
+				t3 += tmp;
+				c3++;
 			}else if(type.equals("4")){
-				tmp = tmp * q / 100;
+				t4 += tmp;
+				c4++;
 			}
-			gpa += tmp;
-			count++;
+			gpa = (t1 / c1) * h / 100 + (t2 / c2) *q / 100 + (t3 / c3) * t / 100 + (t4 / c4) * p / 100;
 		}
-		return gpa / count;
+		return gpa;
 	}	
 	
 	

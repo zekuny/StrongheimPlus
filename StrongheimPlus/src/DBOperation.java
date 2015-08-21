@@ -27,9 +27,19 @@ public class DBOperation {
 	}
 	// update course by courseID
 	public static void updateCourseByCourseID(int cid, int h, int q, int t, int p, Connection conn) throws SQLException{
-		String sql = "update course set homeWorkWeight = " + h + ", quizWeight = " + q + ", testWeight = " + t + ", projectWeight = " + p + "where courseID = " + cid;
+		String sql = "select * from course where courseID = " + cid;
 		PreparedStatement preStatement = conn.prepareStatement(sql);
-		preStatement.executeQuery();
+		ResultSet result = preStatement.executeQuery();
+		
+		if(result.next()){
+			sql = "update course set homeWorkWeight = " + h + ", quizWeight = " + q + ", testWeight = " + t + ", projectWeight = " + p + "where courseID = " + cid;
+			preStatement = conn.prepareStatement(sql);
+			preStatement.executeQuery();
+		}else{
+			sql = "INSERT INTO COURSE (COURSEID, HOMEWORKWEIGHT, QUIZWEIGHT, TESTWEIGHT, PROJECTWEIGHT) VALUES (" + cid + ", " + h + ", " + q + ", " + t + ", " + p + ")";
+			preStatement = conn.prepareStatement(sql);
+			preStatement.executeQuery();			
+		}
 	}
 	
 	// count GPA by studentID and courseID
@@ -63,7 +73,7 @@ public class DBOperation {
 				t4 += tmp;
 				c4++;
 			}
-			gpa = (t1 / c1) * h / 100 + (t2 / c2) *q / 100 + (t3 / c3) * t / 100 + (t4 / c4) * p / 100;
+			gpa = c1 > 0 ? (t1 / c1) * h / 100 : 0 + c2 > 0 ? (t2 / c2) *q / 100 : 0 + c3 > 0 ? (t3 / c3) * t / 100 : c3 + c4 > 0 ? (t4 / c4) * p / 100 : 0;
 		}
 		return gpa;
 	}	

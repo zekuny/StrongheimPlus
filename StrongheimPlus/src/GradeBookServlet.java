@@ -18,6 +18,7 @@ public class GradeBookServlet extends HttpServlet {
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		System.out.println("test000");
 		int courseID = Integer.parseInt(request.getParameter("courseID"));
 		int studentID = Integer.parseInt(request.getParameter("studentID"));
 		String assignmentName = request.getParameter("assignmentName");
@@ -38,7 +39,9 @@ public class GradeBookServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		getServletContext().getRequestDispatcher("/Result.jsp").forward(request, response);
+		System.out.println("test");
+		System.out.println(gb);
+		getServletContext().getRequestDispatcher("/Result22.jsp").forward(request, response);
 	} 
 	
 	

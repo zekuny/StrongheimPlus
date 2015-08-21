@@ -13,6 +13,54 @@ public class GradeBook {
 	private double grade;
 	Connection conn;
 	
+	public int getCourseID() {
+		return courseID;
+	}
+
+	public void setCourseID(int courseID) {
+		this.courseID = courseID;
+	}
+
+	public int getStudentID() {
+		return studentID;
+	}
+
+	public void setStudentID(int studentID) {
+		this.studentID = studentID;
+	}
+
+	public String getAssignmentName() {
+		return assignmentName;
+	}
+
+	public void setAssignmentName(String assignmentName) {
+		this.assignmentName = assignmentName;
+	}
+
+	public int getTypeID() {
+		return typeID;
+	}
+
+	public void setTypeID(int typeID) {
+		this.typeID = typeID;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public double getGrade() {
+		return grade;
+	}
+
+	public void setGrade(double grade) {
+		this.grade = grade;
+	}
+
 	public GradeBook(){
 		courseID = 0;
 		studentID = 0;
@@ -51,7 +99,7 @@ public class GradeBook {
 	
 	// Write data into database
 	public void writeData() throws SQLException{
-		String sql = "insert into gradebook (courseID, studentID, assignmentName, typeID, \"date\", grade) values (" + courseID + ", " + studentID + ", '" + assignmentName + "', " + typeID + ",  to_date('" + getDateString() + "', 'DD Mon yyyy'), " + grade + ")";
+		String sql = "insert into gradebookplus (courseID, studentID, assignmentName, typeID, \"date\", grade) values (" + courseID + ", " + studentID + ", '" + assignmentName + "', " + typeID + ",  to_date('" + getDateString() + "', 'DD Mon yyyy'), " + grade + ")";
 		PreparedStatement preStatement = conn.prepareStatement(sql);
 		preStatement.executeQuery();
 	}

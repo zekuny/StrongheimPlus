@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
+ 
 // Extend HttpServlet class
 @WebServlet("/ResultServlet")
 public class ResultServlet extends HttpServlet {
@@ -114,7 +114,7 @@ public class ResultServlet extends HttpServlet {
 				// the first is the jsp attribute, the second is the servlet attribute
 				//getServletContext().getRequestDispatcher("/viewResult.jsp").forward(request, response);	
 		}
-		
+		 
 		
 		if(request.getParameter("gpa") != null && !request.getParameter("gpa").isEmpty()){
 			

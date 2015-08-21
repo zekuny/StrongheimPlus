@@ -44,11 +44,11 @@ public class DBOperation {
 			double tmp = Double.parseDouble(result.getString("grade"));
 			if(type.equals("1")){
 				tmp = tmp * h / 100;
-			}else if(type.equals("1")){
+			}else if(type.equals("2")){
 				tmp = tmp * q / 100;
-			}else if(type.equals("1")){
+			}else if(type.equals("3")){
 				tmp = tmp * t / 100;
-			}else if(type.equals("1")){
+			}else if(type.equals("4")){
 				tmp = tmp * q / 100;
 			}
 			gpa += tmp;
